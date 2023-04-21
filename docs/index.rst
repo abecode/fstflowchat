@@ -5,6 +5,11 @@ fstflowchat
 `finite state transducers
 <https://en.wikipedia.org/wiki/Finite-state_transducer>`_.
 
+
+.. image:: library_search.png
+  :width: 600
+  :alt: FST for a library search dialog
+
 The aims of this project are:
 
 - to make dialog systems that can be visualized as graphs. We

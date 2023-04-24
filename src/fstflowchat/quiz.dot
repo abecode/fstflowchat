@@ -1,0 +1,14 @@
+digraph Quiz {
+  lblstyle="rotate=20"
+  start -> welcome                [label="null:welcome_msg", lblstyle="rotate=20"]
+  welcome -> welcome              [label="not_ready:ru_ready_msg"]
+  welcome -> ask_questions        [label="ready:ask_question"]
+  ask_questions -> ask_questions  [label="correct_answ:ask_question"]
+  ask_questions -> ask_questions  [label="partially_correct:feedback_then_next_question"]
+  ask_questions -> ask_questions  [label="wrong_answ:feedback_drilldown_then_next_question"]
+  ask_questions -> after_test     [label="quiz_done:grade_last_and_give_results"]
+  ask_questions -> after_test     [label="user_exit:give_results"]
+  after_test    -> after_test     [label="user_asks_q:answer_question"]
+  after_test    -> goodbye        [label="not_user_asks_q:goodbye"]
+
+}

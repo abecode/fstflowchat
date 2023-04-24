@@ -208,7 +208,7 @@ partial_count = 0
 def main():
     # read graph
     try:
-        graph = pgv.AGraph("quiz.dot")
+        graph = pgv.AGraph(__file__ + "/quiz.dot")
     except IndexError:
         print("need to give the name of a dot file graph as input",
               file=sys.stderr)

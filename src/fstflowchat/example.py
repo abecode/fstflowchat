@@ -1,6 +1,8 @@
 import random
 import sys
 import pygraphviz as pgv
+import pathlib
+
 
 
 def get_graph_functions(g: pgv.agraph.AGraph):
@@ -208,7 +210,8 @@ partial_count = 0
 def main():
     # read graph
     try:
-        graph = pgv.AGraph(__file__ + "/quiz.dot")
+        here = pathlib.Path(__file__).parent.resolve()
+        graph = pgv.AGraph((here / "quiz.dot"))
     except IndexError:
         print("need to give the name of a dot file graph as input",
               file=sys.stderr)

@@ -74,34 +74,31 @@ class FST():
         self._env = env
 
     def __call__(self, input_: str) -> str:
-        console.print(f"current_state: {self.current_state}", style="info")
+
+        # use this dict to store info for debugging
         transition_info = {"current_state": self.current_state,
+                           "input_": input_,
                            "edges": []}
         
         neighbor_edges = self.graph.out_edges(self.current_state)
-        console.print("neighbor_edges:", style="info")
-
         valid_edges = []
         output_fns = []
         for e in neighbor_edges:
             test_fn, out_fn = e.attr['label'].split(":")
-            transition_info["edges"].append({"to": e[0],
-                                             "from": e[1],
-                                             "transition_fn": test_fn,
-                                             "output_fn": out_fn})
-            console.print("\t" + str(list(e)), style="info")
-            console.print("\ttransition_fn:", test_fn, style="info")
-            console.print("\toutput_fn:", out_fn, style="info")
+            edge_logging_info = {"to": e[0],
+                                 "from": e[1],
+                                 "transition_fn": test_fn,
+                                 "output_fn": out_fn,
+                                 "valid": False}
 
             if self._env[test_fn](input_):
                 valid_edges.append(e)
                 output_fns.append(out_fn)
-        console.print("\tthere are " + str(len(valid_edges)) + " valid next states",
-                      style="info")
-        console.print("\t\t", valid_edges,
-                      style="info")
+                edge_logging_info['valid'] = True
 
-        transition_info["valid_next_states"] = list(map(lambda x: x[1], valid_edges))
+            transition_info["edges"].append(edge_logging_info)
+
+        #transition_info["valid_next_states"] = list(map(lambda x: x[1], valid_edges))
         
         if len(valid_edges) == 0:
             print("no valid transitions", file=sys.stderr)
@@ -109,13 +106,14 @@ class FST():
         
         # we will pick the first True test function
         self.current_state = valid_edges[0][1]
-        console.print(f"next_state: {self.current_state}", style="info")
-
         transition_info["next_state"] = self.current_state
 
+        output = self._env[output_fns[0]](input_)
+        transition_info["output"] = output
+
         console.print(json.dumps(transition_info, indent=2), style="info")
-        
-        return self._env[output_fns[0]](input_)
+
+        return output
 
     def run(self) -> None:
         agent_output = self("") # prime the agent because it needs input to start

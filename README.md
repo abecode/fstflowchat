@@ -25,8 +25,9 @@ application](https://graphviz.org/download/) and the [pygraphviz
 library](https://pygraphviz.github.io/documentation/stable/install.html).
 
 
-For mac installation issues, please use the following command after
-running `brew install graphviz`, as described in this [stackoverflow
+For mac installation issues, if you receive an error, please use the
+following command after running `brew install graphviz`, as described
+in this [stackoverflow
 question](https://stackoverflow.com/questions/69970147/how-do-i-resolve-the-pygraphviz-error-on-mac-os)
 
 ```

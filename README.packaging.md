@@ -2,6 +2,7 @@
 ## sphinx/readthedocs
 
 ```
+pip install sphinx nbsphinx
 sphinx-build docs html
 ...
 ```

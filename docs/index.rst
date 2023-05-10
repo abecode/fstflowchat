@@ -1,3 +1,4 @@
+============
 fstflowchat
 ============
 
@@ -26,10 +27,14 @@ The aims of this project are:
    This project is under active development and welcomes contributions
    
 
-Contents
---------
-
+   
 .. toctree::
+   :maxdepth: 2
 
    usage
-   api
+
+
+.. toctree::
+   :maxdepth: 2
+
+   notebook_example

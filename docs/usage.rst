@@ -1,3 +1,4 @@
+=====
 Usage
 =====
 
@@ -10,9 +11,10 @@ Installation
 
 .. code-block:: console
 
-   !apt install libgraphviz-dev
-   !pip install pygraphviz
-   import pygraphviz as pgv
+   !apt install libgraphviz-dev # installs graphviz plus development libraries
+   !pip install fstflowchat
+   import fstflowchat as ffc
+
 
 Creating a dialog graph
 ------------------------
@@ -82,4 +84,4 @@ the library, how may I help you?"
    def welcome_msg_with_question(input_: str) -> str:
      return "Welcome to the library, how may I help you?" 
 
-For a full example see the notebook...
+For a full example see the noebook example
